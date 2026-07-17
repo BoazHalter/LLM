@@ -1,14 +1,13 @@
-  
-Traceback (most recent call last):
-Original columns from CSV: ['Not Found']
-Cleaned columns: ['Not Found']
-  File "/home/runner/work/LLM/LLM/chatgpt/Data-Processing-Feature-Engineering-0.py", line 29, in <module>
-    df = df[required_cols].copy() # Use .copy() to avoid SettingWithCopyWarning
-  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages/pandas/core/frame.py", line 4119, in __getitem__
-    indexer = self.columns._get_indexer_strict(key, "columns")[1]
-  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 6212, in _get_indexer_strict
-    self._raise_if_missing(keyarr, indexer, axis_name)
-  File "/opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages/pandas/core/indexes/base.py", line 6261, in _raise_if_missing
-    raise KeyError(f"None of [{key}] are in the [{axis_name}]")
-KeyError: "None of [Index(['Timestamp Et', 'Open', 'High', 'Low', 'Close'], dtype='object')] are in the [columns]"
-Error: Process completed with exit code 1.
+New-Item -Path "chatgpt/__init__.py" -ItemType File
+New-Item : The file 
+'C:\Users\bh_ya\Documents\Git\LLM\chatgpt\__init__.py' 
+already exists.
+At line:1 char:1
++ New-Item -Path "chatgpt/__init__.py" -ItemType File
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : WriteError: (C:\Users\bh_ya\... 
+   gpt\__init__.py:String) [New-Item], IOException
+    + FullyQualifiedErrorId : NewItemIOError,Microsoft.PowerS 
+   hell.Commands.NewItemCommand
+ 
+PS C:\Users\bh_ya\Documents\Git\LLM> 
