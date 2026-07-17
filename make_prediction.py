@@ -1,6 +1,6 @@
 import pandas as pd
 import joblib
-from feature_library import engineer_features # Import the centralized function
+from feature_library import engineer_features
 
 # --- Configuration ---
 MODEL_PATH = 'chatgpt_rf_model.joblib'
@@ -10,59 +10,58 @@ RAW_DATA_PATH = "RawData/Dataset_NQ_1min_2022_2025.csv"
 # The number of recent rows to load for feature calculation.
 # This must be larger than the longest lookback window (e.g., 60 for Stoch_K_60_10).
 DATA_LOOKBACK = 200
+def main():
+    """Main function to load the model and make a new prediction."""
+    # 1. Load the trained model and scaler
+    print("Loading model and scaler...")
+    model = joblib.load(MODEL_PATH)
+    scaler = joblib.load(SCALER_PATH)
 
-# --- Prediction Logic ---
+    # 2. Load the most recent data
+    print(f"Loading last {DATA_LOOKBACK} rows from raw data...")
+    df_raw = pd.read_csv(RAW_DATA_PATH).tail(DATA_LOOKBACK)
 
-# 1. Load the trained model and scaler
-print("Loading model and scaler...")
-model = joblib.load(MODEL_PATH)
-scaler = joblib.load(SCALER_PATH)
+    # 3. Clean and prepare the data (must match training)
+    df_raw.columns = df_raw.columns.str.strip().str.title()
+    df_raw['DateTime'] = pd.to_datetime(df_raw['Timestamp Et'])
+    df_raw = df_raw.set_index('DateTime').sort_index()
 
-# 2. Load the most recent data
-print(f"Loading last {DATA_LOOKBACK} rows from raw data...")
-df_raw = pd.read_csv(RAW_DATA_PATH).tail(DATA_LOOKBACK)
+    # 4. Engineer features
+    print("Engineering features for new data...")
+    df_features = engineer_features(df_raw[['Open', 'High', 'Low', 'Close']].copy())
 
-# 3. Clean and prepare the data (must match training)
-df_raw.columns = df_raw.columns.str.strip().str.title()
-df_raw['DateTime'] = pd.to_datetime(df_raw['Timestamp Et'])
-df_raw = df_raw.set_index('DateTime').sort_index()
+    # 5. Get the last valid row for prediction
+    last_row = df_features.dropna().iloc[-1]
+    current_price = last_row['Close']
+    print(f"\nMaking prediction based on data from: {last_row.name} (Current Close: {current_price:.2f})")
 
-# 4. Engineer features
-print("Engineering features for new data...")
-df_features = engineer_features(df_raw[['Open', 'High', 'Low', 'Close']].copy())
+    # 6. Select the same features used in training
+    features_for_model = [
+        'Close', 'SMA_20', 'EMA_20', 'BB_Upper', 'BB_Lower', 'RSI_14', 'MACD', 'MACD_Signal',
+        'Stoch_K_9_3', 'Stoch_D_9_3', 'Stoch_K_14_3', 'Stoch_D_14_3', 'Stoch_K_44_4', 'Stoch_D_44_4',
+        'Stoch_K_60_10', 'Stoch_D_60_10', 'Stoch_K_9_3_Crossover', 'Stoch_K_9_3_Level',
+        'Stoch_K_14_3_Crossover', 'Stoch_K_14_3_Level', 'Stoch_K_44_4_Crossover', 'Stoch_K_44_4_Level',
+        'Stoch_K_60_10_Crossover', 'Stoch_K_60_10_Level', 'Stoch_K_9_3_Momentum', 'Stoch_K_14_3_Momentum',
+        'Stoch_K_44_4_Momentum', 'Stoch_K_60_10_Momentum'
+    ]
+    X_pred_df = last_row[features_for_model].to_frame().T
 
-# 5. Get the last valid row for prediction
-last_row = df_features.dropna().iloc[-1]
-current_price = last_row['Close']
-print(f"\nMaking prediction based on data from: {last_row.name} (Current Close: {current_price:.2f})")
+    # 7. Scale the features
+    X_pred_scaled = scaler.transform(X_pred_df)
 
-# 6. Select the same features used in training
-features_for_model = [
-    'Close', 'SMA_20', 'EMA_20', 'BB_Upper', 'BB_Lower', 'RSI_14', 'MACD', 'MACD_Signal',
-    'Stoch_K_9_3', 'Stoch_D_9_3', 'Stoch_K_14_3', 'Stoch_D_14_3', 'Stoch_K_44_4', 'Stoch_D_44_4',
-    'Stoch_K_60_10', 'Stoch_D_60_10', 'Stoch_K_9_3_Crossover', 'Stoch_K_9_3_Level',
-    'Stoch_K_14_3_Crossover', 'Stoch_K_14_3_Level', 'Stoch_K_44_4_Crossover', 'Stoch_K_44_4_Level',
-    'Stoch_K_60_10_Crossover', 'Stoch_K_60_10_Level', 'Stoch_K_9_3_Momentum', 'Stoch_K_14_3_Momentum',
-    'Stoch_K_44_4_Momentum', 'Stoch_K_60_10_Momentum'
-]
-# Convert the single row (a Series) to a DataFrame to preserve feature names for the scaler
-X_pred_df = last_row[features_for_model].to_frame().T
+    # 8. Make the prediction
+    predicted_return = model.predict(X_pred_scaled)[0]
+    predicted_price = current_price * (1 + predicted_return)
 
-# 7. Scale the features
-X_pred_scaled = scaler.transform(X_pred_df)
+    # --- Display Result ---
+    print("\n--- Prediction Result ---")
+    print(f"Predicted Return for next minute: {predicted_return:+.4%}")
+    print(f"Predicted Close Price for next minute: {predicted_price:.2f}")
 
-# 8. Make the prediction (predicts the return)
-predicted_return = model.predict(X_pred_scaled)[0]
+    if predicted_price > current_price:
+        print("Signal: Price is predicted to INCREASE.")
+    else:
+        print("Signal: Price is predicted to DECREASE.")
 
-# 9. Convert return to price
-predicted_price = current_price * (1 + predicted_return)
-
-# --- Display Result ---
-print("\n--- Prediction Result ---")
-print(f"Predicted Return for next minute: {predicted_return:+.4%}")
-print(f"Predicted Close Price for next minute: {predicted_price:.2f}")
-
-if predicted_price > current_price:
-    print("Signal: Price is predicted to INCREASE.")
-else:
-    print("Signal: Price is predicted to DECREASE.")
+if __name__ == "__main__":
+    main()

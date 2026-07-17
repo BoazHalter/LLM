@@ -1,13 +1,283 @@
-New-Item -Path "chatgpt/__init__.py" -ItemType File
-New-Item : The file 
-'C:\Users\bh_ya\Documents\Git\LLM\chatgpt\__init__.py' 
-already exists.
-At line:1 char:1
-+ New-Item -Path "chatgpt/__init__.py" -ItemType File
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : WriteError: (C:\Users\bh_ya\... 
-   gpt\__init__.py:String) [New-Item], IOException
-    + FullyQualifiedErrorId : NewItemIOError,Microsoft.PowerS 
-   hell.Commands.NewItemCommand
- 
-PS C:\Users\bh_ya\Documents\Git\LLM> 
+2026-07-17T13:10:57.8899652Z Current runner version: '2.335.1'
+2026-07-17T13:10:57.8928223Z ##[group]Runner Image Provisioner
+2026-07-17T13:10:57.8929089Z Hosted Compute Agent
+2026-07-17T13:10:57.8929766Z Version: 20260707.563
+2026-07-17T13:10:57.8930457Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+2026-07-17T13:10:57.8931192Z Build Date: 2026-07-07T19:33:50Z
+2026-07-17T13:10:57.8931950Z Worker ID: {0311fd55-92f9-4fbd-a7fc-2920f765d900}
+2026-07-17T13:10:57.8932676Z Azure Region: eastus
+2026-07-17T13:10:57.8933241Z ##[endgroup]
+2026-07-17T13:10:57.8935077Z ##[group]Operating System
+2026-07-17T13:10:57.8936026Z Ubuntu
+2026-07-17T13:10:57.8936625Z 24.04.4
+2026-07-17T13:10:57.8937178Z LTS
+2026-07-17T13:10:57.8937709Z ##[endgroup]
+2026-07-17T13:10:57.8938327Z ##[group]Runner Image
+2026-07-17T13:10:57.8938983Z Image: ubuntu-24.04
+2026-07-17T13:10:57.8939548Z Version: 20260714.240.1
+2026-07-17T13:10:57.8940918Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260714.240/images/ubuntu/Ubuntu2404-Readme.md
+2026-07-17T13:10:57.8942641Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260714.240
+2026-07-17T13:10:57.8943631Z ##[endgroup]
+2026-07-17T13:10:57.8945215Z ##[group]GITHUB_TOKEN Permissions
+2026-07-17T13:10:57.8947593Z Contents: read
+2026-07-17T13:10:57.8948262Z Metadata: read
+2026-07-17T13:10:57.8948895Z Packages: read
+2026-07-17T13:10:57.8949462Z ##[endgroup]
+2026-07-17T13:10:57.8952027Z Secret source: Actions
+2026-07-17T13:10:57.8953121Z Prepare workflow directory
+2026-07-17T13:10:57.9281258Z Prepare all required actions
+2026-07-17T13:10:57.9319110Z Getting action download info
+2026-07-17T13:10:58.1563411Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-07-17T13:10:58.3140909Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-07-17T13:10:58.4291716Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-07-17T13:10:58.6545468Z Complete job name: build
+2026-07-17T13:10:58.7318587Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-17T13:10:58.7327764Z ##[group]Run actions/checkout@v4
+2026-07-17T13:10:58.7328504Z with:
+2026-07-17T13:10:58.7328986Z   repository: BoazHalter/LLM
+2026-07-17T13:10:58.7333104Z   token: ***
+2026-07-17T13:10:58.7333583Z   ssh-strict: true
+2026-07-17T13:10:58.7334067Z   ssh-user: git
+2026-07-17T13:10:58.7334566Z   persist-credentials: true
+2026-07-17T13:10:58.7335108Z   clean: true
+2026-07-17T13:10:58.7335785Z   sparse-checkout-cone-mode: true
+2026-07-17T13:10:58.7336361Z   fetch-depth: 1
+2026-07-17T13:10:58.7336835Z   fetch-tags: false
+2026-07-17T13:10:58.7337328Z   show-progress: true
+2026-07-17T13:10:58.7337814Z   lfs: false
+2026-07-17T13:10:58.7338353Z   submodules: false
+2026-07-17T13:10:58.7338838Z   set-safe-directory: true
+2026-07-17T13:10:58.7339573Z ##[endgroup]
+2026-07-17T13:10:58.8357580Z Syncing repository: BoazHalter/LLM
+2026-07-17T13:10:58.8359808Z ##[group]Getting Git version info
+2026-07-17T13:10:58.8360533Z Working directory is '/home/runner/work/LLM/LLM'
+2026-07-17T13:10:58.8361543Z [command]/usr/bin/git version
+2026-07-17T13:10:58.8423993Z git version 2.54.0
+2026-07-17T13:10:58.8476760Z ##[endgroup]
+2026-07-17T13:10:58.8501093Z Temporarily overriding HOME='/home/runner/work/_temp/bf9fbf7c-1323-420a-b797-0cf51d17f482' before making global git config changes
+2026-07-17T13:10:58.8504051Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-17T13:10:58.8538552Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/LLM/LLM
+2026-07-17T13:10:58.8582267Z Deleting the contents of '/home/runner/work/LLM/LLM'
+2026-07-17T13:10:58.8585701Z ##[group]Initializing the repository
+2026-07-17T13:10:58.8592336Z [command]/usr/bin/git init /home/runner/work/LLM/LLM
+2026-07-17T13:10:58.8674211Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-07-17T13:10:58.8676484Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-07-17T13:10:58.8678313Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-07-17T13:10:58.8679856Z hint: call:
+2026-07-17T13:10:58.8680726Z hint:
+2026-07-17T13:10:58.8682167Z hint: 	git config --global init.defaultBranch <name>
+2026-07-17T13:10:58.8684957Z hint:
+2026-07-17T13:10:58.8686239Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-07-17T13:10:58.8687958Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-07-17T13:10:58.8689282Z hint:
+2026-07-17T13:10:58.8690003Z hint: 	git branch -m <name>
+2026-07-17T13:10:58.8692180Z hint:
+2026-07-17T13:10:58.8693350Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-07-17T13:10:58.8695224Z Initialized empty Git repository in /home/runner/work/LLM/LLM/.git/
+2026-07-17T13:10:58.8698177Z [command]/usr/bin/git remote add origin https://github.com/BoazHalter/LLM
+2026-07-17T13:10:58.8739983Z ##[endgroup]
+2026-07-17T13:10:58.8741348Z ##[group]Disabling automatic garbage collection
+2026-07-17T13:10:58.8744130Z [command]/usr/bin/git config --local gc.auto 0
+2026-07-17T13:10:58.8778468Z ##[endgroup]
+2026-07-17T13:10:58.8779751Z ##[group]Setting up auth
+2026-07-17T13:10:58.8786194Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-17T13:10:58.8822239Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-17T13:10:58.9173172Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-17T13:10:58.9253309Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-17T13:10:58.9585134Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-17T13:10:58.9627360Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-17T13:10:58.9894139Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-17T13:10:58.9938945Z ##[endgroup]
+2026-07-17T13:10:58.9940330Z ##[group]Fetching the repository
+2026-07-17T13:10:58.9951209Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8ea915f1e7c10f71ac902fbea6f51b47480b3ad6:refs/remotes/origin/main
+2026-07-17T13:10:59.1799268Z From https://github.com/BoazHalter/LLM
+2026-07-17T13:10:59.1801657Z  * [new ref]         8ea915f1e7c10f71ac902fbea6f51b47480b3ad6 -> origin/main
+2026-07-17T13:10:59.2066914Z ##[endgroup]
+2026-07-17T13:10:59.2076445Z ##[group]Determining the checkout info
+2026-07-17T13:10:59.2086923Z ##[endgroup]
+2026-07-17T13:10:59.2088142Z [command]/usr/bin/git sparse-checkout disable
+2026-07-17T13:10:59.2137677Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-17T13:10:59.2178286Z ##[group]Checking out the ref
+2026-07-17T13:10:59.2185257Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-07-17T13:10:59.2537898Z Switched to a new branch 'main'
+2026-07-17T13:10:59.2541900Z branch 'main' set up to track 'origin/main'.
+2026-07-17T13:10:59.2548488Z ##[endgroup]
+2026-07-17T13:10:59.2606184Z [command]/usr/bin/git log -1 --format=%H
+2026-07-17T13:10:59.2641059Z 8ea915f1e7c10f71ac902fbea6f51b47480b3ad6
+2026-07-17T13:10:59.2928892Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-17T13:10:59.2931865Z ##[group]Run actions/setup-python@v5
+2026-07-17T13:10:59.2932441Z with:
+2026-07-17T13:10:59.2932890Z   python-version: 3.9
+2026-07-17T13:10:59.2933385Z   check-latest: false
+2026-07-17T13:10:59.2937677Z   token: ***
+2026-07-17T13:10:59.2938163Z   update-environment: true
+2026-07-17T13:10:59.2938705Z   allow-prereleases: false
+2026-07-17T13:10:59.2939219Z   freethreaded: false
+2026-07-17T13:10:59.2939697Z ##[endgroup]
+2026-07-17T13:10:59.4373575Z ##[group]Installed versions
+2026-07-17T13:10:59.6877001Z Version 3.9 was not found in the local cache
+2026-07-17T13:10:59.6987360Z (node:2271) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-07-17T13:10:59.6989292Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-07-17T13:11:00.0991148Z Version 3.9 is available for downloading
+2026-07-17T13:11:00.0993968Z Download from "https://github.com/actions/python-versions/releases/download/3.9.25-19039189640/python-3.9.25-linux-24.04-x64.tar.gz"
+2026-07-17T13:11:00.5961429Z Extract downloaded archive
+2026-07-17T13:11:00.6115539Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/1db3140d-6769-4500-b7b4-4e603e59e385 -f /home/runner/work/_temp/15e7d1c9-5f8d-436a-ac72-88e91585bbf7
+2026-07-17T13:11:02.1335974Z Execute installation script
+2026-07-17T13:11:02.1460862Z Check if Python hostedtoolcache folder exist...
+2026-07-17T13:11:02.1461274Z Create Python 3.9.25 folder
+2026-07-17T13:11:02.1477155Z Copy Python binaries to hostedtoolcache folder
+2026-07-17T13:11:02.6106205Z Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+2026-07-17T13:11:02.6150365Z Upgrading pip...
+2026-07-17T13:11:05.2403901Z Looking in links: /tmp/tmpe8ucr0y1
+2026-07-17T13:11:05.2407862Z Requirement already satisfied: setuptools in /opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages (79.0.1)
+2026-07-17T13:11:05.2412420Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages (23.0.1)
+2026-07-17T13:11:06.9622549Z Collecting pip
+2026-07-17T13:11:06.9990240Z Downloading pip-26.0.1-py3-none-any.whl (1.8 MB)
+2026-07-17T13:11:07.0346263Z ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 54.6 MB/s eta 0:00:00
+2026-07-17T13:11:07.0346876Z 
+2026-07-17T13:11:07.0921081Z Installing collected packages: pip
+2026-07-17T13:11:07.0921631Z Attempting uninstall: pip
+2026-07-17T13:11:07.0936861Z Found existing installation: pip 23.0.1
+2026-07-17T13:11:07.2737635Z Uninstalling pip-23.0.1:
+2026-07-17T13:11:07.2810389Z Successfully uninstalled pip-23.0.1
+2026-07-17T13:11:08.1146755Z Successfully installed pip-26.0.1
+2026-07-17T13:11:08.1736198Z Create complete file
+2026-07-17T13:11:08.1783649Z Successfully set up CPython (3.9.25)
+2026-07-17T13:11:08.1784538Z ##[endgroup]
+2026-07-17T13:11:08.2009166Z ##[group]Run python -m pip install --upgrade pip
+2026-07-17T13:11:08.2009646Z [36;1mpython -m pip install --upgrade pip[0m
+2026-07-17T13:11:08.2009984Z [36;1mpip install -r requirements.txt[0m
+2026-07-17T13:11:08.2100943Z shell: /usr/bin/bash -e {0}
+2026-07-17T13:11:08.2101229Z env:
+2026-07-17T13:11:08.2101539Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:08.2101996Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib/pkgconfig
+2026-07-17T13:11:08.2102448Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:08.2102831Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:08.2103204Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:08.2103566Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib
+2026-07-17T13:11:08.2103881Z ##[endgroup]
+2026-07-17T13:11:09.0010660Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.9.25/x64/lib/python3.9/site-packages (26.0.1)
+2026-07-17T13:11:09.8179709Z Collecting pandas (from -r requirements.txt (line 1))
+2026-07-17T13:11:09.8550654Z   Downloading pandas-2.3.3-cp39-cp39-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (91 kB)
+2026-07-17T13:11:10.0936099Z Collecting numpy (from -r requirements.txt (line 2))
+2026-07-17T13:11:10.0985052Z   Downloading numpy-2.0.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+2026-07-17T13:11:10.1835794Z Collecting scikit-learn (from -r requirements.txt (line 3))
+2026-07-17T13:11:10.1879487Z   Downloading scikit_learn-1.6.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+2026-07-17T13:11:10.3737714Z Collecting matplotlib (from -r requirements.txt (line 4))
+2026-07-17T13:11:10.3784980Z   Downloading matplotlib-3.9.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+2026-07-17T13:11:10.3974912Z Collecting python-dateutil>=2.8.2 (from pandas->-r requirements.txt (line 1))
+2026-07-17T13:11:10.4014491Z   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+2026-07-17T13:11:10.4372316Z Collecting pytz>=2020.1 (from pandas->-r requirements.txt (line 1))
+2026-07-17T13:11:10.4416036Z   Downloading pytz-2026.2-py2.py3-none-any.whl.metadata (22 kB)
+2026-07-17T13:11:10.4564310Z Collecting tzdata>=2022.7 (from pandas->-r requirements.txt (line 1))
+2026-07-17T13:11:10.4606947Z   Downloading tzdata-2026.3-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-07-17T13:11:10.6031196Z Collecting scipy>=1.6.0 (from scikit-learn->-r requirements.txt (line 3))
+2026-07-17T13:11:10.6073787Z   Downloading scipy-1.13.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+2026-07-17T13:11:10.6320260Z Collecting joblib>=1.2.0 (from scikit-learn->-r requirements.txt (line 3))
+2026-07-17T13:11:10.6362050Z   Downloading joblib-1.5.3-py3-none-any.whl.metadata (5.5 kB)
+2026-07-17T13:11:10.6470717Z Collecting threadpoolctl>=3.1.0 (from scikit-learn->-r requirements.txt (line 3))
+2026-07-17T13:11:10.6509044Z   Downloading threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+2026-07-17T13:11:10.7141600Z Collecting contourpy>=1.0.1 (from matplotlib->-r requirements.txt (line 4))
+2026-07-17T13:11:10.7185262Z   Downloading contourpy-1.3.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.4 kB)
+2026-07-17T13:11:10.7312417Z Collecting cycler>=0.10 (from matplotlib->-r requirements.txt (line 4))
+2026-07-17T13:11:10.7351869Z   Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+2026-07-17T13:11:10.9368660Z Collecting fonttools>=4.22.0 (from matplotlib->-r requirements.txt (line 4))
+2026-07-17T13:11:10.9418440Z   Downloading fonttools-4.60.2-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (113 kB)
+2026-07-17T13:11:11.0222928Z Collecting kiwisolver>=1.3.1 (from matplotlib->-r requirements.txt (line 4))
+2026-07-17T13:11:11.0267117Z   Downloading kiwisolver-1.4.7-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (6.3 kB)
+2026-07-17T13:11:11.1654186Z Collecting packaging>=20.0 (from matplotlib->-r requirements.txt (line 4))
+2026-07-17T13:11:11.1697486Z   Downloading packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+2026-07-17T13:11:11.4216851Z Collecting pillow>=8 (from matplotlib->-r requirements.txt (line 4))
+2026-07-17T13:11:11.4270279Z   Downloading pillow-11.3.0-cp39-cp39-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+2026-07-17T13:11:11.6164305Z Collecting pyparsing>=2.3.1 (from matplotlib->-r requirements.txt (line 4))
+2026-07-17T13:11:11.6214435Z   Downloading pyparsing-3.3.2-py3-none-any.whl.metadata (5.8 kB)
+2026-07-17T13:11:11.6456907Z Collecting importlib-resources>=3.2.0 (from matplotlib->-r requirements.txt (line 4))
+2026-07-17T13:11:11.6497572Z   Downloading importlib_resources-6.5.2-py3-none-any.whl.metadata (3.9 kB)
+2026-07-17T13:11:11.6715544Z Collecting zipp>=3.1.0 (from importlib-resources>=3.2.0->matplotlib->-r requirements.txt (line 4))
+2026-07-17T13:11:11.6754602Z   Downloading zipp-3.23.1-py3-none-any.whl.metadata (3.6 kB)
+2026-07-17T13:11:11.6932006Z Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas->-r requirements.txt (line 1))
+2026-07-17T13:11:11.6970709Z   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+2026-07-17T13:11:11.7113897Z Downloading pandas-2.3.3-cp39-cp39-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.8 MB)
+2026-07-17T13:11:11.7634278Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 267.9 MB/s  0:00:00
+2026-07-17T13:11:11.7681608Z Downloading numpy-2.0.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (19.5 MB)
+2026-07-17T13:11:11.8273478Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 19.5/19.5 MB 343.1 MB/s  0:00:00
+2026-07-17T13:11:11.8315736Z Downloading scikit_learn-1.6.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.5 MB)
+2026-07-17T13:11:11.8727105Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.5/13.5 MB 344.4 MB/s  0:00:00
+2026-07-17T13:11:11.8786302Z Downloading matplotlib-3.9.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (8.3 MB)
+2026-07-17T13:11:11.9046877Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 341.7 MB/s  0:00:00
+2026-07-17T13:11:11.9087797Z Downloading contourpy-1.3.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (321 kB)
+2026-07-17T13:11:11.9160125Z Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+2026-07-17T13:11:11.9219828Z Downloading fonttools-4.60.2-cp39-cp39-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.8 MB)
+2026-07-17T13:11:11.9384284Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 329.3 MB/s  0:00:00
+2026-07-17T13:11:11.9423616Z Downloading importlib_resources-6.5.2-py3-none-any.whl (37 kB)
+2026-07-17T13:11:11.9487652Z Downloading joblib-1.5.3-py3-none-any.whl (309 kB)
+2026-07-17T13:11:11.9553711Z Downloading kiwisolver-1.4.7-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
+2026-07-17T13:11:11.9630312Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 253.3 MB/s  0:00:00
+2026-07-17T13:11:11.9671672Z Downloading packaging-26.2-py3-none-any.whl (100 kB)
+2026-07-17T13:11:11.9733705Z Downloading pillow-11.3.0-cp39-cp39-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.6 MB)
+2026-07-17T13:11:11.9934738Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 358.3 MB/s  0:00:00
+2026-07-17T13:11:11.9982419Z Downloading pyparsing-3.3.2-py3-none-any.whl (122 kB)
+2026-07-17T13:11:12.0043372Z Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+2026-07-17T13:11:12.0107080Z Downloading pytz-2026.2-py2.py3-none-any.whl (510 kB)
+2026-07-17T13:11:12.0179318Z Downloading scipy-1.13.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.6 MB)
+2026-07-17T13:11:12.1391816Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.6/38.6 MB 324.0 MB/s  0:00:00
+2026-07-17T13:11:12.1438261Z Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+2026-07-17T13:11:12.1504277Z Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+2026-07-17T13:11:12.1571077Z Downloading tzdata-2026.3-py2.py3-none-any.whl (348 kB)
+2026-07-17T13:11:12.1683049Z Downloading zipp-3.23.1-py3-none-any.whl (10 kB)
+2026-07-17T13:11:12.4455236Z Installing collected packages: pytz, zipp, tzdata, threadpoolctl, six, pyparsing, pillow, packaging, numpy, kiwisolver, joblib, fonttools, cycler, scipy, python-dateutil, importlib-resources, contourpy, scikit-learn, pandas, matplotlib
+2026-07-17T13:11:26.7246341Z 
+2026-07-17T13:11:26.7284072Z Successfully installed contourpy-1.3.0 cycler-0.12.1 fonttools-4.60.2 importlib-resources-6.5.2 joblib-1.5.3 kiwisolver-1.4.7 matplotlib-3.9.4 numpy-2.0.2 packaging-26.2 pandas-2.3.3 pillow-11.3.0 pyparsing-3.3.2 python-dateutil-2.9.0.post0 pytz-2026.2 scikit-learn-1.6.1 scipy-1.13.1 six-1.17.0 threadpoolctl-3.6.0 tzdata-2026.3 zipp-3.23.1
+2026-07-17T13:11:26.9848215Z ##[group]Run # Create the directory for the raw data
+2026-07-17T13:11:26.9848657Z [36;1m# Create the directory for the raw data[0m
+2026-07-17T13:11:26.9848986Z [36;1mmkdir -p RawData[0m
+2026-07-17T13:11:26.9849624Z [36;1mcurl -L -o RawData/Dataset_NQ_1min_2022_2025.csv https://github.com/BoazHalter/LLM/releases/download/v1.0-data/Dataset_NQ_1min_2022_2025.csv[0m
+2026-07-17T13:11:26.9916320Z shell: /usr/bin/bash -e {0}
+2026-07-17T13:11:26.9916581Z env:
+2026-07-17T13:11:26.9916857Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:26.9917300Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib/pkgconfig
+2026-07-17T13:11:26.9917714Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:26.9918077Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:26.9918438Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:26.9918903Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib
+2026-07-17T13:11:26.9919403Z ##[endgroup]
+2026-07-17T13:11:27.0208385Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-07-17T13:11:27.0209264Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-07-17T13:11:27.0210613Z 
+2026-07-17T13:11:27.1478608Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-07-17T13:11:27.1479150Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-07-17T13:11:27.3794862Z 
+2026-07-17T13:11:27.3795779Z 100 69.1M  100 69.1M    0     0   192M      0 --:--:-- --:--:-- --:--:--  192M
+2026-07-17T13:11:27.3860628Z ##[group]Run python Data-Processing-Feature-Engineering-0.py
+2026-07-17T13:11:27.3861100Z [36;1mpython Data-Processing-Feature-Engineering-0.py[0m
+2026-07-17T13:11:27.3924445Z shell: /usr/bin/bash -e {0}
+2026-07-17T13:11:27.3924697Z env:
+2026-07-17T13:11:27.3924962Z   pythonLocation: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:27.3925567Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib/pkgconfig
+2026-07-17T13:11:27.3925992Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:27.3926357Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:27.3926737Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.9.25/x64
+2026-07-17T13:11:27.3927155Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.25/x64/lib
+2026-07-17T13:11:27.3927477Z ##[endgroup]
+2026-07-17T13:11:27.7389958Z Traceback (most recent call last):
+2026-07-17T13:11:27.7397457Z   File "/home/runner/work/LLM/LLM/Data-Processing-Feature-Engineering-0.py", line 2, in <module>
+2026-07-17T13:11:27.7398155Z     from feature_library import engineer_features # Import the centralized function
+2026-07-17T13:11:27.7398831Z ImportError: cannot import name 'engineer_features' from 'feature_library' (/home/runner/work/LLM/LLM/feature_library.py)
+2026-07-17T13:11:27.7743210Z ##[error]Process completed with exit code 1.
+2026-07-17T13:11:27.7878001Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-17T13:11:27.7879183Z Post job cleanup.
+2026-07-17T13:11:27.8779370Z [command]/usr/bin/git version
+2026-07-17T13:11:27.8822676Z git version 2.54.0
+2026-07-17T13:11:27.8864798Z Temporarily overriding HOME='/home/runner/work/_temp/18c642b8-e299-450e-bb74-492ceac99955' before making global git config changes
+2026-07-17T13:11:27.8866353Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-17T13:11:27.8870959Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/LLM/LLM
+2026-07-17T13:11:27.8910929Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-17T13:11:27.8948096Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-17T13:11:27.9222543Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-17T13:11:27.9247048Z http.https://github.com/.extraheader
+2026-07-17T13:11:27.9258986Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-07-17T13:11:27.9296083Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-17T13:11:27.9559161Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-17T13:11:27.9597050Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-17T13:11:28.0025601Z Cleaning up orphan processes
+2026-07-17T13:11:28.0302387Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
