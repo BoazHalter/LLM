@@ -17,6 +17,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    - name: Download Raw Data from Release
+      run: |
+        # Create the directory for the raw data
+        mkdir -p RawData
+        # Download the dataset from the release you created.
+        # IMPORTANT: Replace YOUR_USERNAME and YOUR_REPOSITORY with your actual GitHub username and repo name.
+        curl -L -o RawData/Dataset_NQ_1min_2022_2025.csv https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/releases/download/v1.0-data/Dataset_NQ_1min_2022_2025.csv
     - name: Run ML Pipeline
       run: |
         python chatgpt/Data-Processing-Feature-Engineering-0.py

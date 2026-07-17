@@ -1,72 +1,15 @@
 import pandas as pd
-import numpy as np
 import joblib
+from chatgpt.feature_library import engineer_features # Import the centralized function
 
 # --- Configuration ---
 MODEL_PATH = 'chatgpt_rf_model.joblib'
 SCALER_PATH = 'scaler.gz'
-RAW_DATA_PATH = r"C:\Users\bh_ya\Documents\LLM\RawData\Dataset_NQ_1min_2022_2025.csv"
+RAW_DATA_PATH = "RawData/Dataset_NQ_1min_2022_2025.csv"
 
 # The number of recent rows to load for feature calculation.
 # This must be larger than the longest lookback window (e.g., 60 for Stoch_K_60_10).
 DATA_LOOKBACK = 200
-
-# --- Feature Engineering Functions (must match training script) ---
-
-# Technical Indicator Parameters from training
-SMA_WINDOW = 20
-EMA_WINDOW = 20
-BB_WINDOW = 20
-RSI_WINDOW = 14
-MACD_FAST = 12
-MACD_SLOW = 26
-MACD_SIGNAL = 9
-
-def compute_rsi(series, period=14):
-    delta = series.diff()
-    gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
-    loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
-    rs = gain / (loss + 1e-10)
-    return 100 - (100 / (1 + rs))
-
-def calculate_stochastic(df, n, d_period, k_smooth=3):
-    low_n = df['Low'].rolling(window=n).min()
-    high_n = df['High'].rolling(window=n).max()
-    raw_k = 100 * (df['Close'] - low_n) / (high_n - low_n)
-    slow_k = raw_k.rolling(window=k_smooth).mean()
-    slow_d = slow_k.rolling(window=d_period).mean()
-    return slow_k, slow_d
-
-def add_stochastic_signals(df, k_col, d_col):
-    crossover_signal = np.sign(df[k_col] - df[d_col])
-    df[f'{k_col}_Crossover'] = crossover_signal.diff().apply(lambda x: 1 if x > 1 else (-1 if x < -1 else 0))
-    df[f'{k_col}_Level'] = np.where(df[k_col] > 80, 1, np.where(df[k_col] < 20, -1, 0))
-    df[f'{k_col}_Momentum'] = df[k_col].diff()
-
-def engineer_features(df):
-    """Applies all feature engineering steps to the dataframe."""
-    df[f'SMA_{SMA_WINDOW}'] = df['Close'].rolling(window=SMA_WINDOW).mean()
-    df[f'EMA_{EMA_WINDOW}'] = df['Close'].ewm(span=EMA_WINDOW, adjust=False).mean()
-    rolling_std = df['Close'].rolling(window=BB_WINDOW).std()
-    df['BB_Upper'] = df[f'SMA_{SMA_WINDOW}'] + (rolling_std * 2)
-    df['BB_Lower'] = df[f'SMA_{SMA_WINDOW}'] - (rolling_std * 2)
-    df[f'RSI_{RSI_WINDOW}'] = compute_rsi(df['Close'], period=RSI_WINDOW)
-    ema_fast = df['Close'].ewm(span=MACD_FAST, adjust=False).mean()
-    ema_slow = df['Close'].ewm(span=MACD_SLOW, adjust=False).mean()
-    df['MACD'] = ema_fast - ema_slow
-    df['MACD_Signal'] = df['MACD'].ewm(span=MACD_SIGNAL, adjust=False).mean()
-
-    stochastic_configs = [(9, 3), (14, 3), (44, 4), (60, 10)]
-    for n, d in stochastic_configs:
-        k_col_name = f'Stoch_K_{n}_{d}'
-        d_col_name = f'Stoch_D_{n}_{d}'
-        if n == 44: # Special case from your script
-            df[k_col_name], df[d_col_name] = calculate_stochastic(df, n, d, k_smooth=4)
-        else:
-            df[k_col_name], df[d_col_name] = calculate_stochastic(df, n, d)
-        add_stochastic_signals(df, k_col_name, d_col_name)
-
-    return df
 
 # --- Prediction Logic ---
 

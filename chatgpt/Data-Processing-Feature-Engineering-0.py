@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # --- Configuration ---
-RAW_DATA_PATH = r"C:\Users\bh_ya\Documents\LLM\RawData\Dataset_NQ_1min_2022_2025.csv"
+RAW_DATA_PATH = "RawData/Dataset_NQ_1min_2022_2025.csv"
 PROCESSED_DATA_PATH = 'processed_features.csv'
 
 # Technical Indicator Parameters
@@ -85,7 +85,7 @@ def calculate_stochastic(df, n, d_period, k_smooth=3):
 
 df['Stoch_K_9_3'], df['Stoch_D_9_3'] = calculate_stochastic(df, 9, 3)
 df['Stoch_K_14_3'], df['Stoch_D_14_3'] = calculate_stochastic(df, 14, 3)
-df['Stoch_K_44_4'], df['Stoch_D_44_4'] = calculate_stochastic(df, 44, 4)
+df['Stoch_K_44_4'], df['Stoch_D_44_4'] = calculate_stochastic(df, 44, d_period=4, k_smooth=4)
 df['Stoch_K_60_10'], df['Stoch_D_60_10'] = calculate_stochastic(df, 60, 10)
 
 # --- Advanced Feature Engineering from Stochastics ---

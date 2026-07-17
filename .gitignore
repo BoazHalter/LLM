@@ -1,0 +1,18 @@
+# --- Generated Artifacts ---
+# Ignore model files, scalers, and processed data
+*.joblib
+*.gz
+processed_features.csv
+
+# Ignore all generated plots
+*.png
+
+# --- Raw Data ---
+# Ignore the entire raw data directory
+RawData/
+
+# --- Python ---
+# Ignore virtual environments and cache files
+venv/
+__pycache__/
+*.pyc
