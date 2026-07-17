@@ -40,10 +40,11 @@ jobs:
           scaler.gz
           actual_vs_predicted_prices.png
           feature_importance.png
-    - name: "Step 3: Backtesting"
-      run: python backtest.py
-    - name: Upload Backtest Results
+          backtest_equity_curve.png
+    - name: Remove backtest.py to reflect new unified script
+      run: rm backtest.py
+    - name: Final Artifacts (Legacy - can be removed if no other process needs it)
       uses: actions/upload-artifact@v4
       with:
-        name: backtest-results
-        path: backtest_equity_curve.png
+        name: final-artifacts
+        path: .

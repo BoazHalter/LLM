@@ -141,3 +141,55 @@ print("Saved feature importance plot to 'feature_importance.png'")
 # Saving the model
 joblib.dump(model, 'chatgpt_rf_model.joblib')
 print("Model saved as 'chatgpt_rf_model.joblib'")
+
+
+# --- Backtesting Logic (Integrated) ---
+
+print("\n--- Starting Backtest ---")
+
+# Strategy Parameters
+TRADE_THRESHOLD = 0.00005  # e.g., 0.005%
+
+print(f"Backtesting on {len(X_test)} data points (test set).")
+
+# The `predicted_returns` and `y_test` are already available from the evaluation step.
+
+# Simulate the trading strategy
+positions = []  # 1 for long, -1 for short, 0 for flat
+for pred_return in predicted_returns:
+    if pred_return > TRADE_THRESHOLD:
+        positions.append(1)  # Go Long
+    elif pred_return < -TRADE_THRESHOLD:
+        positions.append(-1) # Go Short
+    else:
+        positions.append(0)  # Stay Flat
+
+# Calculate the strategy returns
+strategy_returns = y_test * pd.Series(positions, index=y_test.index).shift(1)
+strategy_returns = strategy_returns.fillna(0)
+
+# --- Backtest Performance Evaluation ---
+
+cumulative_strategy_returns = (1 + strategy_returns).cumprod()
+buy_and_hold_returns = (1 + y_test).cumprod()
+
+total_trades = (pd.Series(positions).diff() != 0).sum()
+win_rate = (strategy_returns > 0).sum() / total_trades if total_trades > 0 else 0
+
+print("\n--- Backtest Results ---")
+print(f"Total Trades Executed: {total_trades}")
+print(f"Win Rate: {win_rate:.2%}")
+print(f"Final Strategy Return: {(cumulative_strategy_returns.iloc[-1] - 1):.2%}")
+print(f"Final Buy-and-Hold Return: {(buy_and_hold_returns.iloc[-1] - 1):.2%}")
+
+# --- Backtest Visualization ---
+plt.figure(figsize=(15, 7))
+plt.plot(cumulative_strategy_returns, label='Model Strategy')
+plt.plot(buy_and_hold_returns, label='Buy and Hold')
+plt.title('Strategy Performance vs. Buy and Hold')
+plt.xlabel('Date')
+plt.ylabel('Cumulative Returns')
+plt.legend()
+plt.grid(True)
+plt.savefig('backtest_equity_curve.png')
+print("Saved backtest equity curve plot to 'backtest_equity_curve.png'")
