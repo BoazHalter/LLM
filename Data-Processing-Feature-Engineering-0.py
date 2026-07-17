@@ -1,5 +1,5 @@
 import pandas as pd
-from .feature_library import engineer_features # Import the centralized function
+from feature_library import engineer_features # Import the centralized function
 
 # --- Configuration ---
 RAW_DATA_PATH = "RawData/Dataset_NQ_1min_2022_2025.csv"

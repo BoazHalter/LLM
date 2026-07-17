@@ -1,6 +1,6 @@
 import pandas as pd
 import joblib
-from .feature_library import engineer_features # Import the centralized function
+from feature_library import engineer_features # Import the centralized function
 
 # --- Configuration ---
 MODEL_PATH = 'chatgpt_rf_model.joblib'
