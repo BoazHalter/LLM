@@ -1,5 +1,5 @@
 import pandas as pd
-from feature_library import engineer_features
+from feature_library import create_features
 
 # --- Configuration ---
 RAW_DATA_PATH = "RawData/Dataset_NQ_1min_2022_2025.csv"
@@ -29,7 +29,7 @@ def main():
     df.set_index('DateTime', inplace=True)
 
     # --- Feature Engineering ---
-    df = engineer_features(df)
+    df = create_features(df)
 
     # --- Save enhanced dataset ---
     df.dropna(inplace=True)
