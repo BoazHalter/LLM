@@ -19,13 +19,20 @@ df = pd.read_csv(RAW_DATA_PATH, delimiter=',')
 
 # --- Data Cleaning ---
 # Print original columns for debugging and clean them up
-print("Original columns from CSV:", df.columns.tolist())
 df.columns = df.columns.str.strip().str.title()
-print("Cleaned columns:", df.columns.tolist())
 
 # Explicitly select the columns you need to avoid non-numeric data like ticker symbols.
 # Adjust these names if they are different in your CSV file.
 required_cols = ['Timestamp Et', 'Open', 'High', 'Low', 'Close']
+
+# --- Data Validation ---
+# Check if the required columns exist after cleaning. This prevents errors if the CSV is malformed.
+missing_cols = [col for col in required_cols if col not in df.columns]
+if missing_cols:
+    print(f"Error: The following required columns are missing from the CSV: {missing_cols}")
+    print(f"Available columns are: {df.columns.tolist()}")
+    exit(1) # Exit with an error code
+
 df = df[required_cols].copy() # Use .copy() to avoid SettingWithCopyWarning
 
 # Convert the timestamp column to a proper DateTime object
